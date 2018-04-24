@@ -1,0 +1,85 @@
+
+#limpiador{
+clear:both;
+padding:0;
+}
+
+@media screen and (min-device-width : 1025px){
+@keyframes jitter{ 50%{transform:skewY(0.7deg) skewX(-0.7deg) scale(1.006);} }
+.button {
+   border-top: 1px solid #96d1f8;
+   background: #7dc2f0;
+   background: -webkit-gradient(linear, left top, left bottom, from(#3e779d), to(#7dc2f0));
+   background: -webkit-linear-gradient(top, #3e779d, #7dc2f0);
+   background: -moz-linear-gradient(top, #3e779d, #7dc2f0);
+   background: -ms-linear-gradient(top, #3e779d, #7dc2f0);
+   background: -o-linear-gradient(top, #3e779d, #7dc2f0);
+   padding: 0px 100px 35px 100px;
+   -webkit-border-radius: 8px;
+   -moz-border-radius: 8px;
+   border-radius: 8px;
+   -webkit-box-shadow: rgba(0,0,0,1) 0 1px 0;
+   -moz-box-shadow: rgba(0,0,0,1) 0 1px 0;
+   box-shadow: rgba(0,0,0,1) 0 1px 0;
+   text-shadow: rgba(0,0,0,.4) 0 1px 0;
+   color: white;
+   font-size: 24px;
+   font-family: Helvetica, Arial, Sans-Serif;
+   text-decoration: none;
+   vertical-align: middle;
+width:30%;
+   }
+.button:hover {
+   border-top-color: #359ade;
+   background: #359ade;
+   color: #ffffff;
+   }
+.button:active {
+   border-top-color: #1b435e;
+   background: #1b435e;
+   }
+}
+
+@media screen and (max-device-width : 1024px) {
+@keyframes jitter{ 50%{transform:skewY(0.7deg) skewX(-0.7deg) scale(1.006);} }
+.button {
+   border-top: 1px solid #96d1f8;
+   background: #7dc2f0;
+   background: -webkit-gradient(linear, left top, left bottom, from(#3e779d), to(#7dc2f0));
+   background: -webkit-linear-gradient(top, #3e779d, #7dc2f0);
+   background: -moz-linear-gradient(top, #3e779d, #7dc2f0);
+   background: -ms-linear-gradient(top, #3e779d, #7dc2f0);
+   background: -o-linear-gradient(top, #3e779d, #7dc2f0);
+  padding: 0px 100px 35px 100px;
+   -webkit-border-radius: 8px;
+   -moz-border-radius: 8px;
+   border-radius: 8px;
+   -webkit-box-shadow: rgba(0,0,0,1) 0 1px 0;
+   -moz-box-shadow: rgba(0,0,0,1) 0 1px 0;
+   box-shadow: rgba(0,0,0,1) 0 1px 0;
+   text-shadow: rgba(0,0,0,.4) 0 1px 0;
+   color: white;
+   font-size: 24px;
+   font-family: Helvetica, Arial, Sans-Serif;
+   text-decoration: none;
+   vertical-align: middle;
+width:30%;
+   }
+.button:hover {
+   border-top-color: #359ade;
+   background: #359ade;
+   color: #ffffff;
+   }
+.button:active {
+   border-top-color: #1b435e;
+   background: #1b435e;
+   }
+}
+div#botones_nueva{
+width:90%;
+position:relative;
+left:5%;
+}
+div#botones_nueva a.button{
+padding: 0px 100px 0px 100px;
+}

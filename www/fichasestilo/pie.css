@@ -1,0 +1,31 @@
+div#pie{
+background-color:rgba(183,186,186,0.6);
+height:4em;
+width: auto;
+/*border-radius: 11px 11px 11px 11px;
+-moz-border-radius: 11px 11px 11px 11px;
+-webkit-border-radius: 11px 11px 11px 11px;
+border: 6px ridge #000000;
+-webkit-box-shadow: 5px -5px 22px -8px rgba(0,0,0,0.75);
+-moz-box-shadow: 5px -5px 22px -8px rgba(0,0,0,0.75);
+box-shadow: 5px -5px 22px -8px rgba(0,0,0,0.75);*/
+color: rgb(150,150,150);
+font-size:0.8em;
+margin:40px 0 0 0;
+background-image: url("../repositorio/estilo/4-carga_2.gif"); 
+background-position: 1% 5%;
+background-repeat: no-repeat;
+background-size: 5%;
+
+}
+div#pie img{
+display:none;
+/*float:left;
+height:55px;*/
+}
+div#pie p{
+margin-top:0;
+margin-left:5%;
+float:left;
+}
+body,html{ height:100%; margin:0;}
