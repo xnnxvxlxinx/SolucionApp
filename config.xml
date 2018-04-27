@@ -7,9 +7,9 @@
     <author email="dev@cordova.apache.org" href="http://cordova.io">
         Apache Cordova Team
     </author>
-	<preference name="phonegap-version" value="cli-7.0.1" />
+    <preference name="phonegap-version" value="cli-7.0.1" />
     <preference name="pgb-builder-version" value="2" />
-     <icon src="res/logo.png" />
+    <icon src="res/logo.png" />
     <content src="index.html" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
@@ -27,7 +27,6 @@
     </platform>
     <plugin name="cordova-plugin-whitelist" spec="1" />
     <plugin name="cordova-plugin-file" spec="~6.0.1" />
-    <plugin name="cordova-sqlite-storage" spec="~2.3.1" />
     <engine name="android" spec="~6.3.0" />
     <engine name="browser" spec="~5.0.3" />
 </widget>
