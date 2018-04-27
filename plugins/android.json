@@ -12,6 +12,9 @@
     },
     "cordova-plugin-file": {
       "PACKAGE_NAME": "info.solucionprofuturo.www"
+    },
+    "cordova-sqlite-storage": {
+      "PACKAGE_NAME": "info.solucionprofuturo.www"
     }
   },
   "dependent_plugins": {}
