@@ -60,36 +60,42 @@ $(function(){
             $.ajax({
                 url: "https://solucionprofuturo.info/App/inicioApp.php",
                 type: "post",
-                dataType: "html",
+                dataType: "json",
                 data: formData,
                 cache: false,
                 contentType: false,
 	     processData: false
             })
-                .done(function(res){
-				var user=res.split('-:-');
-				if(user[0]>0){
+                .done(function(data){
+					var tamanio=data.length;
+				//alert(tamanio);
+				if(data[0].SesionError=='0' && tamanio==1){
 				
-				 localStorage.setItem("ID_Usuarios", user[0]);
+				 localStorage.setItem("ID_Usuarios", data[0].ID_Usuarios);
 				 
-				 localStorage.setItem("codigo", user[1]);
+				 localStorage.setItem("codigo", data[0].codigo);
 				 
-				 localStorage.setItem("prioridad", user[2]);
+				 localStorage.setItem("prioridad", data[0].prioridad);
 				 
-				 localStorage.setItem("nombre", user[3]);
+				 localStorage.setItem("nombre", data[0].nombre);
 				 
-				 localStorage.setItem("apellido", user[4]);
+				 localStorage.setItem("apellido", data[0].apellido);
 				 
-				 localStorage.setItem("mail", user[5]);
+				 localStorage.setItem("mail", data[0].mail);
 				 
-				 localStorage.setItem("codigo_pais", user[6]);
-				 localStorage.setItem("USUARIO", user[7]);
+				 localStorage.setItem("codigo_pais", data[0].codigo_pais);
+				 localStorage.setItem("USUARIO", data[0].Usuario);
 				
 				 location.href="index.html";
-				}else{
-                 $("#mensaje_javascript").css("display","block");
-                    $("#mensaje_javascript").children().html(res);
+				 }else{
+         var mensaje=document.getElementById('mensaje_javascript');
+		mensaje.style.display='block';
+var texto="<h3>Informaci&oacute;n</h3><p>Contrace&ntilde;a incorrecta.</p>";
+texto= texto + "<button type='button' onclick='cancelarconfiguauario(\"mensaje_javascript\");'>Aceptar</button>";
+		mensaje.childNodes[0].innerHTML=texto;
+				
 					}
+				}
 					document.getElementById('ajax-loader').style.display='none';	
 					
                 });
