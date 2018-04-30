@@ -40,22 +40,20 @@ $(function(){
             }).done(function(data){
 				var tamanio=data.length;
 				if(data[0].SesionError=='0' && tamanio==1){
-				var SesionID=data[0].SesionID;	
-				var SesionNivel=data[0].SesionNivel;
-				var SesionNombre=data[0].SesionNombre;
-				var SesionDireccion=data[0].SesionDireccion;
-				var SesionMail=data[0].SesionMail;
-				var SesionTelefono=data[0].SesionTelefono;
-				var SesionLoggedin=data[0].SesionLoggedin;
-				var SesionUsuario=data[0].SesionUsuario;
-				localStorage.setItem("SesionID", SesionID);
-				localStorage.setItem("SesionNivel", SesionNivel);
-				localStorage.setItem("SesionNombre", SesionNombre);
-				localStorage.setItem("SesionDireccion", SesionDireccion);
-				localStorage.setItem("SesionMail", SesionMail);
-				localStorage.setItem("SesionTelefono", SesionTelefono);
-				localStorage.setItem("SesionLoggedin", SesionLoggedin);
-				localStorage.setItem("SesionUsuario", SesionUsuario);
+		localStorage.setItem("ID_Usuarios", data[0].ID_Usuarios);
+				 
+				 localStorage.setItem("codigo", data[0].codigo);
+				 
+				 localStorage.setItem("prioridad", data[0].prioridad);
+				 
+				 localStorage.setItem("nombre", data[0].nombre);
+				 
+				 localStorage.setItem("apellido", data[0].apellido);
+				 
+				 localStorage.setItem("mail", data[0].mail);
+				 
+				 localStorage.setItem("codigo_pais", data[0].codigo_pais);
+				 localStorage.setItem("USUARIO", data[0].Usuario);
 				location.href="../index.html";
 				$("#ErrorInicio").html("");
 				}else{
@@ -63,10 +61,10 @@ $(function(){
 				$("#ErrorInicio").html("Error");
 				}
 				if(data[0].SesionError=='2'){
-				$("#ErrorInicio").html("El nombre de usuario o la contraseÃ±a estÃ¡n incorrectos.");
+				$("#ErrorInicio").html("El nombre de usuario o la contraseña están incorrectos.");
 				}
 				if(data[0].SesionError=='3'){
-				$("#ErrorInicio").html("El nombre de usuario o la contraseÃ±a estÃ¡n incorrectos.");
+				$("#ErrorInicio").html("El nombre de usuario o la contraseña están incorrectos.");
 				}
 				if(data[0].SesionError=='4'){
 				$("#ErrorInicio").html("Error 404");

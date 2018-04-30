@@ -1,0 +1,554 @@
+@media screen and (min-device-width : 1025px){
+@keyframes jitter{ 50%{transform:skewY(0.7deg) skewX(-0.7deg) scale(1.006);} }
+    #1Menu {
+    
+        font-family:Verdana, sans-serif;
+    }
+    legend {
+        color:#0481b1;
+        font-size:16px;
+        padding:0 10px;
+        background:#fff;
+        -moz-border-radius:4px;
+        box-shadow: 0 1px 5px rgba(4, 129, 177, 0.5);
+        padding:5px 10px;
+        text-transform:uppercase;
+        font-family:Helvetica, sans-serif;
+        font-weight:bold;
+    }
+    fieldset {
+        border-radius:4px;
+        background: #fff; 
+        background: -moz-linear-gradient(#fff, #f9fdff);
+        background: -o-linear-gradient(#fff, #f9fdff);
+        background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#fff), to(#f9fdff)); /
+        background: -webkit-linear-gradient(#fff, #f9fdff);
+        padding:20px;
+        border-color:rgba(4, 129, 177, 0.4);
+    }
+    input,
+    textarea {
+        color: #373737;
+        background: #fff;
+        border: 1px solid #CCCCCC;
+        color: #aaa;
+        font-size: 14px;
+        line-height: 1.2em;
+        margin-bottom:15px;
+
+        -moz-border-radius:4px;
+        -webkit-border-radius:4px;
+        border-radius:4px;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1) inset, 0 1px 0 rgba(255, 255, 255, 0.2);
+    }
+    input[type="text"],
+    input[type="password"]{
+        padding: 8px 6px;
+        height: 22px;
+        width:280px;
+    }
+    input[type="text"]:focus,
+    input[type="password"]:focus {
+        background:#f5fcfe;
+        text-indent: 0;
+        z-index: 1;
+        color: #373737;
+        -webkit-transition-duration: 400ms;
+        -webkit-transition-property: width, background;
+        -webkit-transition-timing-function: ease;
+        -moz-transition-duration: 400ms;
+        -moz-transition-property: width, background;
+        -moz-transition-timing-function: ease;
+        -o-transition-duration: 400ms;
+        -o-transition-property: width, background;
+        -o-transition-timing-function: ease;
+        width: 380px;
+        
+        border-color:#ccc;
+        box-shadow:0 0 5px rgba(4, 129, 177, 0.5);
+        opacity:0.6;
+    }
+    input[type="submit"]{
+        background: #222;
+        border: none;
+        text-shadow: 0 -1px 0 rgba(0,0,0,0.3);
+        text-transform:uppercase;
+        color: #eee;
+        cursor: pointer;
+        font-size: 20px;
+        margin: 5px 0;
+        padding: 5px 22px;
+        -moz-border-radius: 4px;
+        border-radius: 4px;
+        -webkit-border-radius:4px;
+        -webkit-box-shadow: 0px 1px 2px rgba(0,0,0,0.3);
+        -moz-box-shadow: 0px 1px 2px rgba(0,0,0,0.3);
+        box-shadow: 0px 1px 2px rgba(0,0,0,0.3);
+    }
+    textarea {
+        padding:3px;
+        width:96%;
+        height:100px;
+    }
+    textarea:focus {
+        background:#ebf8fd;
+        text-indent: 0;
+        z-index: 1;
+        color: #373737;
+        opacity:0.6;
+        box-shadow:0 0 5px rgba(4, 129, 177, 0.5);
+        border-color:#ccc;
+    }
+
+
+
+/* 
+
+	TableCloth	
+	by Alen Grakalic, brought to you by cssglobe.com
+	
+*/
+
+/* general styles */
+
+table, td{
+	font:100% Arial, Helvetica, sans-serif; 
+}
+table{border-collapse:collapse;margin:1em 0; position:relative;
+left:5%;}
+th,  caption{text-align:left;padding:.5em;border:1px solid #fff;}
+th, caption{background:#328aa4 url(tr_back.gif) repeat-x;color:#fff;}
+td{background:#e5f1f4;text-align:left;padding:.5em 1em .5em .5em;border:1px solid #fff;}
+caption{font-size:1.2em;}
+
+/* tablecloth styles */
+
+tr.even td{background:#e5f1f4;}
+tr.odd td{background:#f8fbfc;}
+
+th.over, tr.even th.over, tr.odd th.over{background:#4a98af;}
+th.down, tr.even th.down, tr.odd th.down{background:#bce774;}
+th.selected, tr.even th.selected, tr.odd th.selected{}
+
+td.over, tr.even td.over, tr.odd td.over{background:#ecfbd4;}
+td.down, tr.even td.down, tr.odd td.down{background:#bce774;color:#fff;}
+td.selected, tr.even td.selected, tr.odd td.selected{background:#bce774;color:#555;}
+
+/* use this if you want to apply different styleing to empty table cells*/
+td.empty, tr.odd td.empty, tr.even td.empty{background:#fff;}
+
+table.datos_generales{
+width:30%;
+
+}
+table.datos_escuela{
+width:50%;
+}
+table.observaciones{
+width:50%;
+}
+table.viabilidad{
+width:50%;
+}
+table.politicas{
+width:50%;
+}
+table.contrato{
+width:30%;
+}
+table.seguridad1{
+width:60%;
+}
+
+
+div#1Menu{
+width:90%;
+border:2px solid black;
+border-radius:4px;
+left:5%;
+position:relative;
+}
+.limpiador{
+clear:both;}
+div#1pasos div{
+float:left;
+border:0.5px solid black;
+border-radius:4px;
+width:9.8%;
+height:3.2em;
+padding:1em 0 0 0;
+text-align:center;
+}
+#1botonanterior{
+display:none;}
+div#1formulario div{
+display:none;}
+div#1formulario div#1datos_generales{
+display:block;}
+
+
+.tab{
+  background:#eeeeee;  
+  transition:background .4s;
+}
+
+/*.tab:first-child{  
+  -webkit-border-radius: 5px 0px 0px 0px;
+  border-radius: 5px 0px 0px 0px;
+}
+.tab:last-child{  
+  -webkit-border-radius: 0px 5px 0px 0px;
+  border-radius: 0px 5px 0px 0px;
+}*/
+
+.tab:hover{  
+  background-color:rgba(0,0,0,.1);
+}
+
+.activeTab{
+  background:#fff;
+}
+button{
+/*font-family:"arial";
+width:240px;
+height:28px;
+border: 1px black solid;
+border-radius:20px 20px  20px 20px;
+background: rgb(235,241,246); 
+background: -moz-linear-gradient(top, rgba(235,241,246,1) 0%, rgba(171,211,238,1) 50%, rgba(137,195,235,1) 100%, rgba(213,235,251,1) 100%, rgba(137,195,235,1) 101%); 
+background: -webkit-linear-gradient(top, rgba(235,241,246,1) 0%,rgba(171,211,238,1) 50%,rgba(137,195,235,1) 100%,rgba(213,235,251,1) 100%,rgba(137,195,235,1) 101%); 
+background: linear-gradient(to bottom, rgba(235,241,246,1) 0%,rgba(171,211,238,1) 50%,rgba(137,195,235,1) 100%,rgba(213,235,251,1) 100%,rgba(137,195,235,1) 101%); 
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ebf1f6', endColorstr='#89c3eb',GradientType=0 ); 	
+*/
+    background: #222;
+    border: none;
+    text-shadow: 0 -1px 0 rgba(0,0,0,0.3);
+    text-transform: uppercase;
+    color: #eee;
+    cursor: pointer;
+    font-size: 20px;
+    margin: 5px 0;
+    padding: 5px 10px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    -webkit-border-radius: 4px;
+    -webkit-box-shadow: 0px 1px 2px rgba(0,0,0,0.3);
+    -moz-box-shadow: 0px 1px 2px rgba(0,0,0,0.3);
+    box-shadow: 0px 1px 2px rgba(0,0,0,0.3);
+
+
+}
+button:hover{
+
+/*background: rgb(137,195,235); 
+background: -moz-linear-gradient(top, rgba(137,195,235,1) -1%, rgba(213,235,251,1) 0%, rgba(137,195,235,1) 0%, rgba(171,211,238,1) 50%, rgba(235,241,246,1) 100%); 
+background: -webkit-linear-gradient(top, rgba(137,195,235,1) -1%,rgba(213,235,251,1) 0%,rgba(137,195,235,1) 0%,rgba(171,211,238,1) 50%,rgba(235,241,246,1) 100%); 
+background: linear-gradient(to bottom, rgba(137,195,235,1) -1%,rgba(213,235,251,1) 0%,rgba(137,195,235,1) 0%,rgba(171,211,238,1) 50%,rgba(235,241,246,1) 100%); 
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#89c3eb', endColorstr='#ebf1f6',GradientType=0 ); 
+*/
+}
+div#1boton_enviar input[type="submit"]{
+position:relative;
+left:46%;
+}
+#1botonsiguiente{
+float:right;
+}
+#1botonanterior{
+float:left;
+}
+
+
+}
+
+/*------------------------------------------*/
+/*------------------------------------------*/
+@media screen and (max-device-width : 1024px) {
+@keyframes jitter{ 50%{transform:skewY(0.7deg) skewX(-0.7deg) scale(1.006);} }
+
+ #1Menu {
+    
+        font-family:Verdana, sans-serif;
+    }
+    legend {
+        color:#0481b1;
+        font-size:16px;
+        padding:0 10px;
+        background:#fff;
+        -moz-border-radius:4px;
+        box-shadow: 0 1px 5px rgba(4, 129, 177, 0.5);
+        padding:5px 10px;
+        text-transform:uppercase;
+        font-family:Helvetica, sans-serif;
+        font-weight:bold;
+    }
+    fieldset {
+        border-radius:4px;
+        background: #fff; 
+        background: -moz-linear-gradient(#fff, #f9fdff);
+        background: -o-linear-gradient(#fff, #f9fdff);
+        background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#fff), to(#f9fdff)); /
+        background: -webkit-linear-gradient(#fff, #f9fdff);
+        padding:20px;
+        border-color:rgba(4, 129, 177, 0.4);
+    }
+    input,
+    textarea {
+        color: #373737;
+        background: #fff;
+        border: 1px solid #CCCCCC;
+        color: #aaa;
+        font-size: 14px;
+        line-height: 1.2em;
+        margin-bottom:15px;
+
+        -moz-border-radius:4px;
+        -webkit-border-radius:4px;
+        border-radius:4px;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1) inset, 0 1px 0 rgba(255, 255, 255, 0.2);
+    }
+    input[type="text"],
+    input[type="password"]{
+        padding: 8px 6px;
+        height: 22px;
+        width:280px;
+    }
+    input[type="text"]:focus,
+    input[type="password"]:focus {
+        background:#f5fcfe;
+        text-indent: 0;
+        z-index: 1;
+        color: #373737;
+        -webkit-transition-duration: 400ms;
+        -webkit-transition-property: width, background;
+        -webkit-transition-timing-function: ease;
+        -moz-transition-duration: 400ms;
+        -moz-transition-property: width, background;
+        -moz-transition-timing-function: ease;
+        -o-transition-duration: 400ms;
+        -o-transition-property: width, background;
+        -o-transition-timing-function: ease;
+        width: 380px;
+        
+        border-color:#ccc;
+        box-shadow:0 0 5px rgba(4, 129, 177, 0.5);
+        opacity:0.6;
+    }
+    input[type="submit"]{
+        background: #222;
+        border: none;
+        text-shadow: 0 -1px 0 rgba(0,0,0,0.3);
+        text-transform:uppercase;
+        color: #eee;
+        cursor: pointer;
+        font-size: 20px;
+        margin: 5px 0;
+        padding: 5px 22px;
+        -moz-border-radius: 4px;
+        border-radius: 4px;
+        -webkit-border-radius:4px;
+        -webkit-box-shadow: 0px 1px 2px rgba(0,0,0,0.3);
+        -moz-box-shadow: 0px 1px 2px rgba(0,0,0,0.3);
+        box-shadow: 0px 1px 2px rgba(0,0,0,0.3);
+    }
+    textarea {
+        padding:3px;
+        width:96%;
+        height:100px;
+    }
+    textarea:focus {
+        background:#ebf8fd;
+        text-indent: 0;
+        z-index: 1;
+        color: #373737;
+        opacity:0.6;
+        box-shadow:0 0 5px rgba(4, 129, 177, 0.5);
+        border-color:#ccc;
+    }
+
+
+
+/* 
+
+	TableCloth	
+	by Alen Grakalic, brought to you by cssglobe.com
+	
+*/
+
+/* general styles */
+
+table, td{
+	font:100% Arial, Helvetica, sans-serif; 
+}
+table{border-collapse:collapse;margin:1em 0; position:relative;
+left:5%;}
+th,  caption{text-align:left;padding:.5em;border:1px solid #fff;}
+th, caption{background:#328aa4 url(tr_back.gif) repeat-x;color:#fff;}
+td{background:#e5f1f4;text-align:left;padding:.5em 1em .5em .5em;border:1px solid #fff;}
+caption{font-size:1.2em;}
+
+/* tablecloth styles */
+
+tr.even td{background:#e5f1f4;}
+tr.odd td{background:#f8fbfc;}
+
+th.over, tr.even th.over, tr.odd th.over{background:#4a98af;}
+th.down, tr.even th.down, tr.odd th.down{background:#bce774;}
+th.selected, tr.even th.selected, tr.odd th.selected{}
+
+td.over, tr.even td.over, tr.odd td.over{background:#ecfbd4;}
+td.down, tr.even td.down, tr.odd td.down{background:#bce774;color:#fff;}
+td.selected, tr.even td.selected, tr.odd td.selected{background:#bce774;color:#555;}
+
+/* use this if you want to apply different styleing to empty table cells*/
+td.empty, tr.odd td.empty, tr.even td.empty{background:#fff;}
+
+table.datos_generales{
+width:30%;
+
+}
+table.datos_escuela{
+width:50%;
+}
+table.observaciones{
+width:50%;
+}
+table.viabilidad{
+width:50%;
+}
+table.politicas{
+width:50%;
+}
+table.contrato{
+width:30%;
+}
+table.seguridad1{
+width:60%;
+}
+
+div#1Menu{
+width:90%;
+border:2px solid black;
+border-radius:4px;
+left:5%;
+position:relative;
+}
+.limpiador{
+clear:both;}
+div#1pasos div{
+float:left;
+border:0.5px solid black;
+border-radius:4px;
+width:9.7%;
+height:3.2em;
+overflow:hidden;
+padding:1em 0 0 0;
+text-align:center;
+}
+#1botonanterior{
+display:none;}
+div#1formulario div{
+display:none;}
+div#1formulario div#1datos_generales{
+display:block;}
+
+
+.tab{
+  background:#eeeeee;  
+  transition:background .4s;
+}
+
+/*.tab:first-child{  
+  -webkit-border-radius: 5px 0px 0px 0px;
+  border-radius: 5px 0px 0px 0px;
+}
+.tab:last-child{  
+  -webkit-border-radius: 0px 5px 0px 0px;
+  border-radius: 0px 5px 0px 0px;
+}*/
+
+.tab:hover{  
+  background-color:rgba(0,0,0,.1);
+}
+
+.activeTab{
+  background:#fff;
+}
+button{
+/*font-family:"arial";
+width:240px;
+height:28px;
+border: 1px black solid;
+border-radius:20px 20px  20px 20px;
+
+background: rgb(235,241,246);
+background: -moz-linear-gradient(top, rgba(235,241,246,1) 0%, rgba(171,211,238,1) 50%, rgba(137,195,235,1) 100%, rgba(213,235,251,1) 100%, rgba(137,195,235,1) 101%);
+background: -webkit-linear-gradient(top, rgba(235,241,246,1) 0%,rgba(171,211,238,1) 50%,rgba(137,195,235,1) 100%,rgba(213,235,251,1) 100%,rgba(137,195,235,1) 101%); 
+background: linear-gradient(to bottom, rgba(235,241,246,1) 0%,rgba(171,211,238,1) 50%,rgba(137,195,235,1) 100%,rgba(213,235,251,1) 100%,rgba(137,195,235,1) 101%); 
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ebf1f6', endColorstr='#89c3eb',GradientType=0 ); 	
+*/
+    background: #222;
+    border: none;
+    text-shadow: 0 -1px 0 rgba(0,0,0,0.3);
+    text-transform: uppercase;
+    color: #eee;
+    cursor: pointer;
+    font-size: 20px;
+    margin: 5px 0;
+    padding: 5px 10px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    -webkit-border-radius: 4px;
+    -webkit-box-shadow: 0px 1px 2px rgba(0,0,0,0.3);
+    -moz-box-shadow: 0px 1px 2px rgba(0,0,0,0.3);
+    box-shadow: 0px 1px 2px rgba(0,0,0,0.3);
+
+
+}
+button:hover{
+/*
+background: rgb(137,195,235);
+background: -moz-linear-gradient(top, rgba(137,195,235,1) -1%, rgba(213,235,251,1) 0%, rgba(137,195,235,1) 0%, rgba(171,211,238,1) 50%, rgba(235,241,246,1) 100%); 
+background: -webkit-linear-gradient(top, rgba(137,195,235,1) -1%,rgba(213,235,251,1) 0%,rgba(137,195,235,1) 0%,rgba(171,211,238,1) 50%,rgba(235,241,246,1) 100%); 
+background: linear-gradient(to bottom, rgba(137,195,235,1) -1%,rgba(213,235,251,1) 0%,rgba(137,195,235,1) 0%,rgba(171,211,238,1) 50%,rgba(235,241,246,1) 100%); 
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#89c3eb', endColorstr='#ebf1f6',GradientType=0 );*/
+}
+div#1boton_enviar{
+
+}
+div#1boton_enviar input[type="submit"]{
+position:relative;
+left:46%;
+}
+#1botonsiguiente{
+float:right;
+}
+#1botonanterior{
+float:left;
+}
+div#1datos_escuela {
+width:90%;
+}
+
+div#1datos_escuela input[type="text"]:focus{
+width:320px;
+}
+div#1datos_escuela input[type="text"]{
+width:220px;
+}
+}
+
+span.llenado_porcentage_edifica span.llenado_porcentage{
+display: inline-block;
+border: 1px solid black;
+width:40px;
+height:20px;
+}
+
+span.llenado_porcentage_edifica{
+display: inline-block;
+height:20px;
+}
+td.porcentage{
+height:50px;
+}

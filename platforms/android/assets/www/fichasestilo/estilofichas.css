@@ -1,0 +1,13 @@
+#ficha{
+width:90%;
+position:relative;
+left:5%;
+-webkit-border-radius: 20px;
+-webkit-border-top-left-radius: 40px;
+-moz-border-radius: 20px;
+-moz-border-radius-topleft: 40px;
+border-radius: 20px;
+border-top-left-radius: 40px;
+border:solid 2px black;
+top:20px;
+}

@@ -1,0 +1,122 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>Inicio de sesion</title>
+ <meta
+  name="viewport"
+  content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+  
+<link rel="stylesheet" type="text/css" href="fichasestilo/inicio.css">
+<link rel="stylesheet" type="text/css" href="css/cabeza.css">
+<link rel="stylesheet" type="text/css" href="css/ajax-loader.css">
+<link rel="stylesheet" type="text/css" href="css/mensaje_javascript.css">
+<script src="js/jquerymobile145/jquery-3.2.1.min.js"></script>
+ <script src="js/jquerymobile145/jquery.mobile-1.4.5.min.js"></script>
+  <script type="text/javascript" src="cordova.js"></script>
+<script>
+</script>
+</head>
+<body>
+<div id="contenedor">
+<div id="cabeza">
+<div id="logo">
+<img src="fichasestilo/logo.png" alt="logo" >
+</div>
+<div id="titulo">
+
+</div>
+<div id="usuario">
+
+</div>
+<div class="limpiador"></div>
+</div>
+
+
+<div id="cuerpo">
+
+<div id="login">
+	<form method="post" id="inicioCesi" name="f1">
+	<fieldset>
+<label for="userName" class="fontawesome-user"></label>
+<input type="text" name="username" id="userName" required placeholder="Usuario">
+<br/>
+<label for="userPwd" class="fontawesome-lock"></label>
+<input type="password" name="password" id="userPwd" required placeholder="Contrase&ntilde;a">
+<br/>
+<input type="submit" name="Submit" value="Entrar">
+</fieldset>
+</form>
+<br/>
+</div>
+
+</div>
+<div id="pie">
+</div>
+<script>
+$(function(){
+        $("#inicioCesi").on("submit", function(e){
+			
+            e.preventDefault();
+			
+            var f = $(this);
+            var formData = new FormData(document.getElementById("inicioCesi"));
+			document.getElementById('ajax-loader').style.display='block';
+				setTimeout(function(){
+            $.ajax({
+                url: "https://solucionprofuturo.info/App/inicioApp.php",
+                type: "post",
+                dataType: "json",
+                data: formData,
+                cache: false,
+                contentType: false,
+	     processData: false
+            })
+                .done(function(data){
+					var tamanio=data.length;
+				//alert(tamanio);
+				if(data[0].SesionError=='0' && tamanio==1){
+				
+				 localStorage.setItem("ID_Usuarios", data[0].ID_Usuarios);
+				 
+				 localStorage.setItem("codigo", data[0].codigo);
+				 
+				 localStorage.setItem("prioridad", data[0].prioridad);
+				 
+				 localStorage.setItem("nombre", data[0].nombre);
+				 
+				 localStorage.setItem("apellido", data[0].apellido);
+				 
+				 localStorage.setItem("mail", data[0].mail);
+				 
+				 localStorage.setItem("codigo_pais", data[0].codigo_pais);
+				 localStorage.setItem("USUARIO", data[0].Usuario);
+				
+				 location.href="index.html";
+				 }else{
+         var mensaje=document.getElementById('mensaje_javascript');
+		mensaje.style.display='block';
+var texto="<h3>Informaci&oacute;n</h3><p>Contrace&ntilde;a incorrecta.</p>";
+texto= texto + "<button type='button' onclick='cancelarconfiguauario(\"mensaje_javascript\");'>Aceptar</button>";
+		mensaje.childNodes[0].innerHTML=texto;
+				
+					}
+				
+					document.getElementById('ajax-loader').style.display='none';	
+					
+                });
+				}, 250);
+        });
+		
+    });
+	 function cancelarconfiguauario(id){
+	document.getElementById(id).style.display='none';
+		}
+</script>
+</div>
+<div id='mensaje_javascript'><div></div></div>
+<div id='ajax-loader'>
+	<img src='img/ajax-loader.gif'/>
+	</div>
+</body>
+</html>
+

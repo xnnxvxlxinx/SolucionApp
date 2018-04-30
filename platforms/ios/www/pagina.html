@@ -1,0 +1,80 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>Ingreso de Fichas</title>
+<link rel="stylesheet" type="text/css" href="fichasestilo/llenarfichas.css?v=4">
+<link rel="stylesheet" type="text/css" href="fichasestilo/llenarfichase.css?v=1">
+<link rel="stylesheet" type="text/css" href="fichasestilo/menullenarfichas.css">
+<link rel="stylesheet" type="text/css" href="fichasestilo/pie.css">
+<link rel="stylesheet" type="text/css" href="fichasestilo/editartabla.css">
+<link rel="stylesheet" type="text/css" href="css/cabeza.css">
+<link rel="stylesheet" type="text/css" href="css/ajax-loader.css">
+<link rel="stylesheet" type="text/css" href="fichasestilo/mapas.css">
+<link rel="stylesheet" type="text/css" href="css/mensaje_javascript.css">
+<script src="https://solucionprofuturo.info/archivosbase/jquerymobile145/jquery-3.2.1.min.js"></script>
+ <script src="https://solucionprofuturo.info/archivosbase/jquerymobile145/jquery.mobile-1.4.5.min.js"></script>
+ <link rel="stylesheet" type="text/css" href="fichasestilo/formeter.css">
+ <script src="fichasestilo/formeter.js"></script>
+
+</head>
+
+<body >
+<div id="contenido">
+<div id="cabeza">
+<div id="logo">
+<img src="fichasestilo/logo.png" alt="logo" >
+</div>
+<div id="titulo">
+
+</div>
+<div id="usuario">
+
+</div>
+<div class="limpiador"></div>
+</div>
+<div>
+<table>
+<tr><td><button type="button" onclick="actualizar();">Actualizar</button></td></tr>
+
+<tr><td><button type="button" onclick="cerrarSecion();">Cerrar sesion</button></td></tr>
+</table>
+</div>
+</div>
+<script>
+function actualizar(){
+checkConnection();
+}
+function checkConnection() {
+    	$.ajax({
+  			url: 'https://solucionprofuturo.info/',
+  			async: false,
+  			data: {'tag' : 'connection'}
+  		})
+  		.fail(function() {
+		var mensaje=document.getElementById('mensaje_javascript');
+		mensaje.style.display='block';
+var texto="<p>Su dispositivo no esta conectado al Internet.</br></p>";
+texto= texto + "<button type='button' onclick='cancelarconfiguauario(\"mensaje_javascript\");'>Aceptar</button>";
+		mensaje.childNodes[0].innerHTML=texto;
+		
+		 })
+  		.done(function() { 
+		
+		 })
+  }
+  function cancelarconfiguauario(id){
+	document.getElementById(id).style.display='none';
+		}
+	function cerrarSecion(){
+	localStorage.clear();
+	location.href="index.html";
+	}
+</script>
+<div id='mensaje_javascript'><div></div></div>
+<div id='ajax-loader'>
+	<img src='img/ajax-loader.gif'/>
+	</div>
+</body>
+</html>

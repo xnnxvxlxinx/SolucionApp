@@ -31,9 +31,9 @@
         <param name="android-package" value="cordova.plugins.Diagnostic" />
         <param name="onload" value="true" />
     </feature>
-    <name>Nirjob</name>
+    <name>SolucionProfuturo</name>
     <description>
-        Nirjob APP
+        SolucionProfuturo
     </description>
     <author email="dev@cordova.apache.org" href="http://cordova.io">
         Mateo Moscoso
