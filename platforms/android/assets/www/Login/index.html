@@ -29,7 +29,8 @@ $(function(){
             var formData = new FormData(document.getElementById("formuploadajaxTag"));
 			document.getElementById('ajax-loader').style.display='block';
 			setTimeout(function(){
-            $.ajax({
+			$.getJSON( "https://solucionprofuturo.info/App/inicioApp.php", function( data ) {
+           /* $.ajax({
                 url: "https://solucionprofuturo.info/App/inicioApp.php",
 				async: false,
                 type: "post",
@@ -38,8 +39,9 @@ $(function(){
                 cache: false,
                 contentType: false,
 	     processData: false
-            }).done(function(data){
+            }).done(function(data){*/
 				var tamanio=data.length;
+				alert(tamanio);
 				if(data[0].SesionError=='0' && tamanio==1){
 		localStorage.setItem("ID_Usuarios", data[0].ID_Usuarios);
 				 
