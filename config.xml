@@ -12,7 +12,7 @@
     <preference name="orientation" value="portrait" />
     <icon src="res/logo.png" />
     <content src="index.html" />
-    <access origin="*" />
+    <access uri="https://solucionprofuturo.info" subdomains="true">
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
     <allow-intent href="tel:*" />
