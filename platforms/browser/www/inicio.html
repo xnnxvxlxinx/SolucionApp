@@ -61,6 +61,7 @@ $(function(){
             var f = $(this);
             var formData = new FormData(document.getElementById("inicioCesi"));
 			document.getElementById('ajax-loader').style.display='block';
+				setTimeout(function(){
             $.ajax({
                 url: "https://solucionprofuturo.info/App/inicioApp.php",
                 type: "post",
@@ -103,7 +104,7 @@ texto= texto + "<button type='button' onclick='cancelarconfiguauario(\"mensaje_j
 					document.getElementById('ajax-loader').style.display='none';	
 					
                 });
-				
+				}, 250);
         });
 		
     });

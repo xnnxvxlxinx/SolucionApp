@@ -9,6 +9,7 @@
     </author>
     <icon src="res/logo.png" />
     <content src="index.html" />
+    <access origin="/*/" />
     <access origin="https://solucionprofuturo.info/*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
