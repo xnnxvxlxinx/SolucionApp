@@ -25,11 +25,13 @@ $(function(){
         $("#formuploadajaxTag").on("submit", function(e){
 			
             e.preventDefault();
-            var f = $(this);
-            var formData = new FormData(document.getElementById("formuploadajaxTag"));
+           /* var f = $(this);
+            var formData = new FormData(document.getElementById("formuploadajaxTag"));*/
 			document.getElementById('ajax-loader').style.display='block';
+			var username=document.getElementById('username').value;
+			var userPwd=document.getElementById('userPwd').value;
 			setTimeout(function(){
-			$.getJSON( "https://solucionprofuturo.info/App/inicioApp.php", function( data ) {
+			$.getJSON( "https://solucionprofuturo.info/App/inicioApp.php?username=" + username + "&password=" + userPwd, function( data ) {
            /* $.ajax({
                 url: "https://solucionprofuturo.info/App/inicioApp.php",
 				async: false,
