@@ -62,9 +62,9 @@ db.transaction(function(tx) {
 		});
 }
 function querySuccess (tx, results) {
-var texto="<tr><th>AMIE</th><th>NOMBRE</th><th>FECHA</th></tr>";
+var texto="<tr><th>AMIE</th><th>NOMBRE</th><th>FECHA</th><th>SUBIR</th></tr>";
 for(var i=0; i<results.rows.length; i++){
-texto=texto + "<tr><td>"+ results.rows.item(i)['preg3'] +"</td><td>"+ results.rows.item(i)['preg1'] +"</td><td>"+ results.rows.item(i)['preg2'] +"</td></tr>";
+texto=texto + "<tr><td>"+ results.rows.item(i)['preg3'] +"</td><td>"+ results.rows.item(i)['preg1'] +"</td><td>"+ results.rows.item(i)['preg2'] +"</td><td><button type='button' onclick='subirDiag(\""+ results.rows.item(i)['preg3'] +"\")'>SUBIR</button></td></tr>";
 }
 //alert ("devuelve filas =" + results.rows.item(0)['PROVINCIA']);
 document.getElementById('tablasDiag').innerHTML=texto;
