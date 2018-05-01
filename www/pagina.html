@@ -83,7 +83,7 @@ document.getElementById('ajax-loader').style.display='block';
 var texto="<p>Su dispositivo no esta conectado al Internet.</br></p>";
 texto= texto + "<button type='button' onclick='cancelarconfiguauario(\"mensaje_javascript\");'>Aceptar</button>";
 		mensaje.childNodes[0].innerHTML=texto;
-		
+		document.getElementById('ajax-loader').style.display='none';
 		 })
   		.done(function() { 
 		//alert('Online');
@@ -170,6 +170,40 @@ texto= texto + "<button type='button' onclick='cancelarconfiguauario(\"mensaje_j
         //alert("success!");
     }
 	function subirDiag(AMIE){
+	var mensaje=document.getElementById('mensaje_javascript');
+		mensaje.style.display='block';
+var texto="<p>Aviso.</br>Su ficha se subira a la base de datos.</p>";
+texto= texto + "<button type='button' onclick='cancelarconfiguauario(\"mensaje_javascript\");'>Cancelar</button>";
+texto= texto + "<button type='button' onclick='subirDiagI(\""+ AMIE +"\");'>Subir</button>";
+		mensaje.childNodes[0].innerHTML=texto;
+	}
+	function subirDiagI(AMIE){
+document.getElementById('ajax-loader').style.display='block';
+    	$.ajax({
+  			url: 'https://solucionprofuturo.info/',
+  			async: false,
+  			data: {'tag' : 'connection'}
+  		})
+  		.fail(function() {
+		var mensaje=document.getElementById('mensaje_javascript');
+		mensaje.style.display='block';
+var texto="<p>Su dispositivo no esta conectado al Internet.</br></p>";
+texto= texto + "<button type='button' onclick='cancelarconfiguauario(\"mensaje_javascript\");'>Aceptar</button>";
+		mensaje.childNodes[0].innerHTML=texto;
+		document.getElementById('ajax-loader').style.display='none';
+		 })
+  		.done(function() { 
+		
+	$.post( "https://solucionprofuturo.info/App/subirDiag.php", { name: "John", time: "2pm" })
+  .done(function( data ) {
+   var mensaje=document.getElementById('mensaje_javascript');
+		mensaje.style.display='block';
+var texto="<p>Su ficha se ha subido con &eacute;xito.</br></p>";
+texto= texto + "<button type='button' onclick='cancelarconfiguauario(\"mensaje_javascript\");'>Aceptar</button>";
+		mensaje.childNodes[0].innerHTML=texto;
+	document.getElementById('ajax-loader').style.display='none';
+  });
+         })	
 	}
   function cancelarconfiguauario(id){
 	document.getElementById(id).style.display='none';

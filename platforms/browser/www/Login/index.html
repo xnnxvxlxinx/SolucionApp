@@ -43,7 +43,7 @@ $(function(){
 	     processData: false
             }).done(function(data){*/
 				var tamanio=data.length;
-				alert(tamanio);
+				//alert(tamanio);
 				if(data[0].SesionError=='0' && tamanio==1){
 		localStorage.setItem("ID_Usuarios", data[0].ID_Usuarios);
 				 
@@ -59,6 +59,19 @@ $(function(){
 				 
 				 localStorage.setItem("codigo_pais", data[0].codigo_pais);
 				 localStorage.setItem("USUARIO", data[0].Usuario);
+				 			 var txt='CREATE TABLE IF NOT EXISTS DiagnosticoP (ID , USUARIO, PROVINCIA, ';
+	   for(var i=1; i<=192 ; i++){
+	   if(i!=192){
+	    txt=txt + 'preg' + i + ' ,';
+	   }else{
+	   txt=txt + 'preg' + i ;
+	   }
+	   }
+	   txt=txt + ')';
+	  // alert(txt);
+	  db.transaction(function(tx) {
+   tx.executeSql(txt);
+   });
 				location.href="../index.html";
 				$("#ErrorInicio").html("");
 				}else{
@@ -93,6 +106,7 @@ texto= texto + "<button type='button' onclick='cerrar(\"mensaje_javascript\");'>
 		function cerrar(div){		
 $("#" + div).fadeOut(150);
 }
+var db = window.openDatabase("Database", "1.0", "Cordova Demo", 200000);
 	</script>
 </head>
 <body onload='initialize();'>

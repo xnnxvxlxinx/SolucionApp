@@ -62,9 +62,9 @@ db.transaction(function(tx) {
 		});
 }
 function querySuccess (tx, results) {
-var texto="<tr><th>AMIE</th><th>NOMBRE</th><th>FECHA</th></tr>";
+var texto="<tr><th>AMIE</th><th>NOMBRE</th><th>FECHA</th><th>SUBIR</th></tr>";
 for(var i=0; i<results.rows.length; i++){
-texto=texto + "<tr><td>"+ results.rows.item(i)['preg3'] +"</td><td>"+ results.rows.item(i)['preg1'] +"</td><td>"+ results.rows.item(i)['preg2'] +"</td></tr>";
+texto=texto + "<tr><td>"+ results.rows.item(i)['preg3'] +"</td><td>"+ results.rows.item(i)['preg1'] +"</td><td>"+ results.rows.item(i)['preg2'] +"</td><td><button type='button' onclick='subirDiag(\""+ results.rows.item(i)['preg3'] +"\")'>SUBIR</button></td></tr>";
 }
 //alert ("devuelve filas =" + results.rows.item(0)['PROVINCIA']);
 document.getElementById('tablasDiag').innerHTML=texto;
@@ -83,7 +83,7 @@ document.getElementById('ajax-loader').style.display='block';
 var texto="<p>Su dispositivo no esta conectado al Internet.</br></p>";
 texto= texto + "<button type='button' onclick='cancelarconfiguauario(\"mensaje_javascript\");'>Aceptar</button>";
 		mensaje.childNodes[0].innerHTML=texto;
-		
+		document.getElementById('ajax-loader').style.display='none';
 		 })
   		.done(function() { 
 		//alert('Online');
@@ -169,6 +169,42 @@ texto= texto + "<button type='button' onclick='cancelarconfiguauario(\"mensaje_j
     function successCB() {
         //alert("success!");
     }
+	function subirDiag(AMIE){
+	var mensaje=document.getElementById('mensaje_javascript');
+		mensaje.style.display='block';
+var texto="<p>Aviso.</br>Su ficha se subira a la base de datos.</p>";
+texto= texto + "<button type='button' onclick='cancelarconfiguauario(\"mensaje_javascript\");'>Cancelar</button>";
+texto= texto + "<button type='button' onclick='subirDiagI(\""+ AMIE +"\");'>Subir</button>";
+		mensaje.childNodes[0].innerHTML=texto;
+	}
+	function subirDiagI(AMIE){
+document.getElementById('ajax-loader').style.display='block';
+    	$.ajax({
+  			url: 'https://solucionprofuturo.info/',
+  			async: false,
+  			data: {'tag' : 'connection'}
+  		})
+  		.fail(function() {
+		var mensaje=document.getElementById('mensaje_javascript');
+		mensaje.style.display='block';
+var texto="<p>Su dispositivo no esta conectado al Internet.</br></p>";
+texto= texto + "<button type='button' onclick='cancelarconfiguauario(\"mensaje_javascript\");'>Aceptar</button>";
+		mensaje.childNodes[0].innerHTML=texto;
+		document.getElementById('ajax-loader').style.display='none';
+		 })
+  		.done(function() { 
+		
+	$.post( "https://solucionprofuturo.info/App/subirDiag.php", { name: "John", time: "2pm" })
+  .done(function( data ) {
+   var mensaje=document.getElementById('mensaje_javascript');
+		mensaje.style.display='block';
+var texto="<p>Su ficha se ha subido con &eacute;xito.</br></p>";
+texto= texto + "<button type='button' onclick='cancelarconfiguauario(\"mensaje_javascript\");'>Aceptar</button>";
+		mensaje.childNodes[0].innerHTML=texto;
+	document.getElementById('ajax-loader').style.display='none';
+  });
+         })	
+	}
   function cancelarconfiguauario(id){
 	document.getElementById(id).style.display='none';
 		}
