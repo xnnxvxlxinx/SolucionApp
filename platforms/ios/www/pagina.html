@@ -69,7 +69,7 @@ texto= texto + "<button type='button' onclick='cancelarconfiguauario(\"mensaje_j
 		
 		 })
   		.done(function() { 
-		
+		alert('Online');
         db.transaction(populateDB, errorCB, successCB);
 		 })
   }
@@ -85,8 +85,10 @@ texto= texto + "<button type='button' onclick='cancelarconfiguauario(\"mensaje_j
 	   }
 	   }
 	   txt=txt + ')';
+	   alert(txt);
    tx.executeSql(txt);
 			var Provincia = localStorage.getItem('codigo') || '<empty>';
+			alert(Provincia);
 		$.get( "https://solucionprofuturo.info/App/cargarDiag.php?ID=" + Provincia, function( data ) {
 		var Diagnostico=data.split(';-;');
 		alert(Diagnostico.length);
