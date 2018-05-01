@@ -20,7 +20,7 @@
 
 </head>
 
-<body >
+<body onload="tablasDiagIni();">
 <div id="contenido">
 <div id="cabeza">
 <div id="logo">
@@ -37,24 +37,41 @@
 <div>
 <table>
 <tr><td><button type="button" onclick="actualizar();">Actualizar</button></td></tr>
-
+<tr><td><button type="button" onclick="location.href='diagnostico.html';">Diagn&oacute;stico</button></td></tr>
 <tr><td><button type="button" onclick="cerrarSecion();">Cerrar sesion</button></td></tr>
 </table>
-<div id="tablasDiag">
-</div>
+<table id="tablasDiag">
+</table>
 </div>
 </div>
 <script>
 function actualizar(){
+document.getElementById('ajax-loader').style.display='block';
 checkConnection();
+
+}
+function tablasDiagIni(){
+db.transaction(tablasDiagIn);
 }
 function tablasDiagIn(tx){
-alert('err2');
+//alert('err2');
+document.getElementById('ajax-loader').style.display='block';
 var texto="SELECT * FROM DiagnosticoP";
-tx.executeSql ('SELECT * FROM DiagnosticoP', [], querySuccess, errorCB);
+db.transaction(function(tx) {
+		tx.executeSql ('SELECT * FROM DiagnosticoP', [], querySuccess, errorCB);
+		});
 }
-function querySuccess (tx, results) {alert ("devuelve filas =" + results.rows.length);}
+function querySuccess (tx, results) {
+var texto="<tr><th>AMIE</th><th>NOMBRE</th><th>FECHA</th></tr>";
+for(var i=0; i<results.rows.length; i++){
+texto=texto + "<tr><td>"+ results.rows.item(i)['preg3'] +"</td><td>"+ results.rows.item(i)['preg1'] +"</td><td>"+ results.rows.item(i)['preg2'] +"</td></tr>";
+}
+//alert ("devuelve filas =" + results.rows.item(0)['PROVINCIA']);
+document.getElementById('tablasDiag').innerHTML=texto;
+$('#ajax-loader').fadeOut();
+}
 function checkConnection() {
+document.getElementById('ajax-loader').style.display='block';
     	$.ajax({
   			url: 'https://solucionprofuturo.info/',
   			async: false,
@@ -69,13 +86,13 @@ texto= texto + "<button type='button' onclick='cancelarconfiguauario(\"mensaje_j
 		
 		 })
   		.done(function() { 
-		alert('Online');
+		//alert('Online');
         db.transaction(populateDB, errorCB, successCB);
 		 })
   }
   var db = window.openDatabase("Database", "1.0", "Cordova Demo", 200000);
   function populateDB(tx) {
-       //tx.executeSql('DROP TABLE IF EXISTS DiagnosticoP');
+       tx.executeSql('DROP TABLE IF EXISTS DiagnosticoP');
 	   var txt='CREATE TABLE IF NOT EXISTS DiagnosticoP (ID , USUARIO, PROVINCIA, ';
 	   for(var i=1; i<=192 ; i++){
 	   if(i!=192){
@@ -85,17 +102,17 @@ texto= texto + "<button type='button' onclick='cancelarconfiguauario(\"mensaje_j
 	   }
 	   }
 	   txt=txt + ')';
-	   alert(txt);
+	  // alert(txt);
    tx.executeSql(txt);
 			var Provincia = localStorage.getItem('codigo') || '<empty>';
-			alert(Provincia);
+			//alert(Provincia);
 		$.get( "https://solucionprofuturo.info/App/cargarDiag.php?ID=" + Provincia, function( data ) {
 		var Diagnostico=data.split(';-;');
-		alert(Diagnostico.length);
+		//alert(Diagnostico.length);
 		for(var j=0; j<Diagnostico.length; j++){
 		var preg=Diagnostico[j].split(':-:');
 		if(preg[0]>0){
-		alert(preg.length);
+		//alert(preg.length);
 		var sqlT='INSERT INTO DiagnosticoP (ID , USUARIO , PROVINCIA , ';
 		 for(var i=1; i<=192 ; i++){
 	   if(i!=192){
@@ -117,17 +134,17 @@ texto= texto + "<button type='button' onclick='cancelarconfiguauario(\"mensaje_j
 		tx.executeSql(sqlT);
 		});
 		//alert(sqlT);
-		document.getElementById('tablasDiag').innerHTML='</br>'+ sqlT;
+		//document.getElementById('tablasDiag').innerHTML='</br>'+ sqlT;
 		//tx.executeSql('INSERT INTO DiagnosticoP (ID , USUARIO , PROVINCIA ) VALUES ("1" ,"2" , "3") ');
-		alert('err');
+		//alert('err');
 		}
 		}
-			alert('err');
-		//tablasDiagIn(tx);
-db.transaction(function(tx) {
+			//alert('err');
+		tablasDiagIn(tx);
+/*db.transaction(function(tx) {
 		tx.executeSql ('SELECT * FROM DiagnosticoP', [], querySuccess, errorCB);
-		});
-		alert('FIN');
+		});*/
+		//alert('FIN');
 		});
         /*tx.executeSql('INSERT INTO DEMO (id, data) VALUES (1, "First row")');
         tx.executeSql('INSERT INTO DEMO (id, data) VALUES (2, "Second row")');*/
@@ -150,7 +167,7 @@ db.transaction(function(tx) {
     // Transaction success callback
     //
     function successCB() {
-        alert("success!");
+        //alert("success!");
     }
   function cancelarconfiguauario(id){
 	document.getElementById(id).style.display='none';
