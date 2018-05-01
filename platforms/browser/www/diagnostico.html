@@ -290,12 +290,13 @@ $('#ajax-loader').fadeIn(100);
 	 for(var i=0; i<results.rows.length; i++){
 	 //alert(results.rows.item(i)['preg3']);
 	 text=text+"<option value='" + results.rows.item(i)['ID'] +"'>" + results.rows.item(i)['preg3'] + "</option>";
+	 }
 	 	text=text+"</select>";
 	text=text+"<button type='button' onclick='cargarDiagNue2(); cancelarconfiguauario(\"mensaje_javascript\");'>Cargar</button>  ";
 	text=text+"  <button type='button' onclick='cancelarconfiguauario(\"mensaje_javascript\")'>Cancelar</button>";
      $("#mensaje_javascript").children().html(text);
 		$('#ajax-loader').fadeOut(250); 
-	 }
+	 
 	 });
 	 });
 
@@ -3744,30 +3745,112 @@ $(function(){
         $("#subirDiagnostico1").on("submit", function(e){
 			
             e.preventDefault();
-			
-			/*
-            var f = $(this);
-            var formData = new FormData(document.getElementById("subirDiagnostico1"));
-            //formData.append(f.attr("name"), $(this)[0].files[0]);
 			document.getElementById('ajax-loader').style.display='block';
-            $.ajax({
-                url: "https://solucionprofuturo.info/archivopais/ec/subirDiagnostico.php",
-                type: "post",
-                dataType: "html",
-                data: formData,
-                cache: false,
-                contentType: false,
-	     processData: false
-            })
-                .done(function(res){
-                 $("#mensaje_javascript").css("display","block");
+			var respu=[];
+			respu[0]=800;
+	 respu[1]=localStorage.getItem('ID_Usuarios') || '<empty>';
+	 respu[2]=localStorage.getItem('codigo') || '<empty>';
+	 for(var i=1; i<=192; i++){
+	 var inpu=document.getElementsByName('preg' + i);
+	 var h=i+2;
+	 if(inpu.length!=0){
+	 if(inpu.length==1){
+	 respu[h]=inpu[0].value;
+	 }else{
+	 for(var j=0; j<inpu.length; j++){
+	 if(inpu[j].checked==true){
+	 respu[h]=inpu[j].value;
+	 }
+	 }
+	 }}else{
+	// alert('checkbox');
+	 var inpu=document.getElementsByName('preg'+ i + '[]');
+	 var cheB="";
+	 //alert(inpu.length);
+	 for(var j=0; j<inpu.length; j++){
+	 if(inpu[j].checked==true){
+	 cheB=cheB+"#" + inpu[j].value + ";";
+	 }
+	 }
+	 respu[h]=cheB;
+	 //alert(respu[h]);
+	 }
+	 //alert(inpu.length);
+	 //alert(respu[h]);
+	 }
+	if(respu[5]=='' || respu[3]==''){
+	var res="<p>Es obligatorio llenar el c&oacute;digo AMIE y el Nombre de la instituci&oacute;n.</br></p>";
+res= res + "<button type='button' onclick='cancelarconfiguauario(\"mensaje_javascript\");'>Aceptar</button>";
+	$("#mensaje_javascript").css("display","block");
                     $("#mensaje_javascript").children().html(res);
-					document.getElementById('ajax-loader').style.display='none';	
-				
-                });
-        });*/
+					document.getElementById('ajax-loader').style.display='none';
+	}else{
+	var Compro=0;
+	db.transaction(function(tx){
+	 tx.executeSql ('SELECT * FROM DiagnosticoP WHERE preg3="' + respu[5] + '"', [], function(tx, results){
+	 //alert(results.rows.length);
+	 if(results.rows.length==1){
+	 Compro=1;
+	 }
+	  var txt="";
+	if(Compro==0){
+		var sqlT='INSERT INTO DiagnosticoP (ID , USUARIO , PROVINCIA , ';
+		 for(var i=1; i<=192 ; i++){
+	   if(i!=192){
+	    sqlT=sqlT + 'preg' + i + ' , ';
+	   }else{
+	   sqlT=sqlT + 'preg' + i ;
+	   }
+	   }
+		sqlT=sqlT + ') VALUES (';
+		for(var i=0; i<(respu.length); i++){
+		if(i!=(respu.length-1)){
+	    sqlT=sqlT + '"' + respu[i] + '" , ';
+	   }else{
+	   sqlT=sqlT + '"' + respu[i] ;
+	   }
+		}
+		sqlT=sqlT + '" )';
+		db.transaction(function(tx) {
+		tx.executeSql(sqlT);
+		});
+	}else{
+		var sqlT='UPDATE DiagnosticoP SET ID="'+respu[0]+'" , USUARIO="'+respu[1]+'" , PROVINCIA="'+respu[2]+'" , ';
+		 for(var i=1; i<=192 ; i++){
+		 var h=i+2;
+	   if(i!=192){
+	    sqlT=sqlT + 'preg' + i + '="'+respu[h]+'" , ';
+	   }else{
+	   sqlT=sqlT + 'preg' + i +'="'+respu[h]+'"';
+	   }
+	   }
+		sqlT=sqlT + ' WHERE preg3="'+ respu[5] +'"';
+		db.transaction(function(tx) {
+		tx.executeSql(sqlT, [], exitoUP, ERRUP);
+		});
+	}
+	//alert("FIN");
+	 });
+	 });
+	
+		}	
+			//alert(respu.length);
+		
+				document.getElementById('ajax-loader').style.display='none';
+        });
 		
     });
+	function exitoUP(){
+	var res="<p>Se ha guardado su diagn&oacute;stico.</br></p>";
+	res= res + "<button type='button' onclick='location.href=\"index.html\";'>Salir</button>";
+res= res + "<button type='button' onclick='cancelarconfiguauario(\"mensaje_javascript\");'>Seguir Llenando</button>";
+	$("#mensaje_javascript").css("display","block");
+                    $("#mensaje_javascript").children().html(res);
+					document.getElementById('ajax-loader').style.display='none';
+	}
+		function ERRUP(tx, err){
+		 alert("Error processing SQL: "+err);
+	}
 </script>
 <div id="botones">
 <button type="button" id="botonanterior" onclick="botones('anterior')">Anterior</button>
