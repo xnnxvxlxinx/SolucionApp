@@ -195,6 +195,14 @@ texto= texto + "<button type='button' onclick='cancelarconfiguauario(\"mensaje_j
   		.done(function() { 
 		
 	$.post( "https://solucionprofuturo.info/App/subirDiag.php", { name: "John", time: "2pm" })
+	.fail(function() {
+		var mensaje=document.getElementById('mensaje_javascript');
+		mensaje.style.display='block';
+var texto="<p>Error.</br></p>";
+texto= texto + "<button type='button' onclick='cancelarconfiguauario(\"mensaje_javascript\");'>Aceptar</button>";
+		mensaje.childNodes[0].innerHTML=texto;
+		document.getElementById('ajax-loader').style.display='none';
+		 })
   .done(function( data ) {
    var mensaje=document.getElementById('mensaje_javascript');
 		mensaje.style.display='block';
