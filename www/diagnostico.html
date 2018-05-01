@@ -3812,7 +3812,7 @@ res= res + "<button type='button' onclick='cancelarconfiguauario(\"mensaje_javas
 		}
 		sqlT=sqlT + '" )';
 		db.transaction(function(tx) {
-		tx.executeSql(sqlT);
+		tx.executeSql(sqlT, [], exitoUP, ERRUP);
 		});
 	}else{
 		var sqlT='UPDATE DiagnosticoP SET ID="'+respu[0]+'" , USUARIO="'+respu[1]+'" , PROVINCIA="'+respu[2]+'" , ';
