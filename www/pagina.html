@@ -177,6 +177,7 @@ texto= texto + "<button type='button' onclick='cancelarconfiguauario(\"mensaje_j
 texto= texto + "<button type='button' onclick='subirDiagI(\""+ AMIE +"\");'>Subir</button>";
 		mensaje.childNodes[0].innerHTML=texto;
 	}
+	var ID_Usuario = localStorage.getItem('ID_Usuarios') || '<empty>';
 	function subirDiagI(AMIE){
 document.getElementById('ajax-loader').style.display='block';
     	$.ajax({
@@ -192,9 +193,38 @@ texto= texto + "<button type='button' onclick='cancelarconfiguauario(\"mensaje_j
 		mensaje.childNodes[0].innerHTML=texto;
 		document.getElementById('ajax-loader').style.display='none';
 		 })
-  		.done(function() { 
+  		.done(function() {
+		var textoT="";
+		db.transaction(function(tx) {
+		tx.executeSql ('SELECT * FROM DiagnosticoP WHERE preg3="'+AMIE+'"', [], function(tx, results){
+		for(var j=1; j<=16; j++){
+		var links="https://solucionprofuturo.info/App/subirDiag.php?ID="+ results.rows.item(0)['ID'] +"&USUARIO="+ID_Usuario+"&PROVINCIA="+results.rows.item(0)['PROVINCIA']+"";		
+		for(var i=1+(12*(j-1)); i<=12*j; i++){
+		var rsu=results.rows.item(0)['preg'+i].replace(/#/g, ":");
+		//rsu=rsu.replace(";#",";:");
+		links=links+"&preg"+i+"="+ rsu;
+		if(i==8){
+		alert(links);
+		}
+		}
+		$.get(links, function(data){
+		textoT=textoT+data;
+		document.getElementById('mensajeError').innerHTML=textoT;
+		document.getElementById('ajax-loader').style.display='none';
+		});
+		}
+		/*var mensaje=document.getElementById('mensaje_javascript');
+		mensaje.style.display='block';
+var texto="<p>Su ficha se ha subido con &eacute;xito.</br></p>";
+texto= texto + "<button type='button' onclick='cancelarconfiguauario(\"mensaje_javascript\");'>Aceptar</button>";
+		mensaje.childNodes[0].innerHTML=texto;
+	document.getElementById('mensajeError').innerHTML=data;
+	document.getElementById('ajax-loader').style.display='none';*/
+		document.getElementById('ajax-loader').style.display='none';
+		}, errorCB);
+		});
 		
-	$.post( "https://solucionprofuturo.info/App/subirDiag.php", { name: "John", time: "2pm" })
+	/*$.post( "https://solucionprofuturo.info/App/subirDiag.php", { name: "John", time: "2pm" })
 	.fail(function() {
 		var mensaje=document.getElementById('mensaje_javascript');
 		mensaje.style.display='block';
@@ -210,7 +240,7 @@ var texto="<p>Su ficha se ha subido con &eacute;xito.</br></p>";
 texto= texto + "<button type='button' onclick='cancelarconfiguauario(\"mensaje_javascript\");'>Aceptar</button>";
 		mensaje.childNodes[0].innerHTML=texto;
 	document.getElementById('ajax-loader').style.display='none';
-  });
+  });*/
          })	
 	}
   function cancelarconfiguauario(id){
@@ -221,6 +251,7 @@ texto= texto + "<button type='button' onclick='cancelarconfiguauario(\"mensaje_j
 	location.href="index.html";
 	}
 </script>
+<div id="mensajeError"></div>
 <div id='mensaje_javascript'><div></div></div>
 <div id='ajax-loader'>
 	<img src='img/ajax-loader.gif'/>
