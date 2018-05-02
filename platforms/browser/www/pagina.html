@@ -222,7 +222,8 @@ texto= texto + "<button type='button' onclick='cancelarconfiguauario(\"mensaje_j
 		mensaje.childNodes[0].innerHTML=texto;
 	document.getElementById('mensajeError').innerHTML=data;
 	document.getElementById('ajax-loader').style.display='none';*/
-		document.getElementById('ajax-loader').style.display='none';
+	
+		
 		}, errorCB);
 		});
 		
@@ -246,13 +247,40 @@ texto= texto + "<button type='button' onclick='cancelarconfiguauario(\"mensaje_j
          })	
 	}
 	var textoT="";
+	var NumExit=0;
+	var NumErr=0;
 	function enviarLDiag(links){
 	$.get(links, function(data){
-		textoT=textoT+data+links;
+	//alert(data);
+		if(data=="Exito"){
+		NumExit=NumExit+1;
+		}else{
+		NumErr=NumErr+1;
+		}
+		/*textoT=textoT+data+links;
 		document.getElementById('mensajeError').innerHTML=textoT;
 		document.getElementById('ajax-loader').style.display='none';
-		
+		*/
+		if(NumExit+NumErr==16){
+		terminarSub();
+		}
 		});
+	}
+	function terminarSub(){
+	if(NumExit==16){
+	var mensaje=document.getElementById('mensaje_javascript');
+		mensaje.style.display='block';
+var texto="<p>Informaci&oacute;n</p><h3>Se ha guardado su diagn&oacute;stico.</h3>";
+texto= texto + "<button type='button' onclick='cancelarconfiguauario(\"mensaje_javascript\");'>Aceptar</button>";
+		mensaje.childNodes[0].innerHTML=texto;
+	}else{
+	var mensaje=document.getElementById('mensaje_javascript');
+		mensaje.style.display='block';
+var texto="<p>Informaci&oacute;n</p><h3>Error al guardar su diagn&oacute;stico.</br> Intente otra vez</h3>";
+texto= texto + "<button type='button' onclick='cancelarconfiguauario(\"mensaje_javascript\");'>Aceptar</button>";
+		mensaje.childNodes[0].innerHTML=texto;
+	}
+	document.getElementById('ajax-loader').style.display='none';
 	}
   function cancelarconfiguauario(id){
 	document.getElementById(id).style.display='none';
