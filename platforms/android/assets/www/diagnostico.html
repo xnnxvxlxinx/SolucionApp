@@ -21,6 +21,81 @@
  var db = window.openDatabase("Database", "1.0", "Cordova Demo", 200000);
 function botonnueva(editarn){
 	if(editarn=="nueva"){
+	var ProvinciaUser = localStorage.getItem('codigo') || '<empty>';
+	if(ProvinciaUser==1){
+	textoPr='<input type="radio" name="provincia" id="provincia" value="1" checked="checked">';
+textoPr=textoPr + '<label for="manabi">Manab&iacute;</label>';
+	document.getElementById('provinciaInpu').innerHTML=textoPr;
+	document.getElementById('preg14').value="Costa";
+	}
+	if(ProvinciaUser==2){
+	textoPr='<input type="radio" name="provincia" id="provincia" value="2" checked="checked">';
+textoPr=textoPr + '<label for="manabi">Imbabura</label>';
+	document.getElementById('provinciaInpu').innerHTML=textoPr;
+	document.getElementById('preg14').value="Sierra";
+	}
+	if(ProvinciaUser==3){
+	textoPr='<input type="radio" name="provincia" id="provincia" value="3" checked="checked">';
+textoPr=textoPr + '<label for="manabi">Gal&aacute;pagos</label>';
+	document.getElementById('provinciaInpu').innerHTML=textoPr;
+	document.getElementById('preg14').value="Costa";
+	}
+	if(ProvinciaUser==4){
+	textoPr='<input type="radio" name="provincia" id="provincia" value="4" checked="checked">';
+textoPr=textoPr + '<label for="manabi">Morona Santiago</label>';
+	document.getElementById('provinciaInpu').innerHTML=textoPr;
+	document.getElementById('preg14').value="Oriente";
+	}
+	if(ProvinciaUser==5){
+	textoPr='<input type="radio" name="provincia" id="provincia" value="5" checked="checked">';
+textoPr=textoPr + '<label for="manabi">Azuay</label>';
+	document.getElementById('provinciaInpu').innerHTML=textoPr;
+	document.getElementById('preg14').value="Sierra";
+	}
+	if(ProvinciaUser==6){
+	textoPr='<input type="radio" name="provincia" id="provincia" value="6" checked="checked">';
+textoPr=textoPr + '<label for="manabi">Esmeraldas</label>';
+	document.getElementById('provinciaInpu').innerHTML=textoPr;
+	document.getElementById('preg14').value="Costa";
+	}
+	if(ProvinciaUser==7){
+	textoPr='<input type="radio" name="provincia" id="provincia" value="7" checked="checked">';
+textoPr=textoPr + '<label for="manabi">Pichincha</label>';
+	document.getElementById('provinciaInpu').innerHTML=textoPr;
+	document.getElementById('preg14').value="Sierra";
+	}
+	if(ProvinciaUser==8){
+	textoPr='<input type="radio" name="provincia" id="provincia" value="8" checked="checked">';
+textoPr=textoPr + '<label for="manabi">Guayas</label>';
+	document.getElementById('provinciaInpu').innerHTML=textoPr;
+	document.getElementById('preg14').value="Costa";
+	}
+	if(ProvinciaUser==9){
+	textoPr='<input type="radio" name="provincia" id="provincia" value="9" checked="checked">';
+textoPr=textoPr + '<label for="manabi">Bolivar</label>';
+	document.getElementById('provinciaInpu').innerHTML=textoPr;
+	document.getElementById('preg14').value="Sierra";
+	}
+	if(ProvinciaUser==10){
+	textoPr='<input type="radio" name="provincia" id="provincia" value="10" checked="checked">';
+textoPr=textoPr + '<label for="manabi">Pastaza</label>';
+	document.getElementById('provinciaInpu').innerHTML=textoPr;
+	document.getElementById('preg14').value="Oriente";
+	}
+	if(ProvinciaUser==11){
+	textoPr='<input type="radio" name="provincia" id="provincia" value="11" checked="checked">';
+textoPr=textoPr + '<label for="manabi">Loja</label>';
+	document.getElementById('provinciaInpu').innerHTML=textoPr;
+	document.getElementById('preg14').value="Sierra";
+	}
+	if(ProvinciaUser==12){
+	textoPr='<input type="radio" name="provincia" id="provincia" value="12" checked="checked">';
+textoPr=textoPr + '<label for="manabi">Zamora Chinchipe</label>';
+	document.getElementById('provinciaInpu').innerHTML=textoPr;
+	document.getElementById('preg14').value="Oriente";
+	}
+	var f = new Date();
+document.getElementById('preg2').value=(ponerCeros(f.getDate()) + "/" + ponerCeros((f.getMonth() +1)) + "/" + f.getFullYear());
 		//document.getElementById('editar_tablas').style.display='none';
 		document.getElementById('Menu').style.display='block';
 		botones(1);
@@ -30,7 +105,16 @@ function botonnueva(editarn){
 	//document.getElementById('editar_tablas').style.display='block';	
 	}
 }
-
+function ponerCeros(num) {
+var numtmp='"'+num+'"';
+	var largo=numtmp.length-2;
+	numtmp=numtmp.split('"').join('');
+	if(largo==2)return numtmp;
+	var ceros='';
+	var pendientes=2-largo;
+	for(i=0;i<pendientes;i++)ceros+='0';
+	return ceros+numtmp;
+}
 
 </script>
 
@@ -1247,6 +1331,9 @@ button{
 </tr>
 
 <tr>
+<script>
+
+</script>
 <th>* Fecha Ingreso de diagn&oacute;stico:</th>
 <td><label for="preg2" class="fontawesome-user"></label>
 <input name="preg2" readonly value="" id="preg2" type="text" ></td>
@@ -1349,7 +1436,7 @@ Ni=i+1;
 
 <tr>
 <th>Provincia</th>
-<td>
+<td id="provinciaInpu">
 <input type="radio" name="provincia" id="provincia" value="1" checked="checked">
 <label for="manabi">Manab&iacute;</label>
 </td>
@@ -1366,41 +1453,42 @@ getCoords : function()
 {
 
  var geocoder = new google.maps.Geocoder();
- var provinc=document.getElementById('provincia').value;
- if(provinc==1){
+ var provincT=document.getElementById('provincia').value;
+ var provinc="";
+ if(provincT==1){
 	 provinc='Manab&iacute;';
  }
- if(provinc==2){
+ if(provincT==2){
 	 provinc='Imbabura';
  }
- if(provinc==3){
+ if(provincT==3){
 	 provinc='Gal&aacute;pagos';
  }
- if(provinc==4){
+ if(provincT==4){
 	 provinc='Morona Santiago';
  }
- if(provinc==5){
+ if(provincT==5){
 	 provinc='Azuay';
  }
- if(provinc==6){
+ if(provincT==6){
 	 provinc='Esmeraldas';
  }
- if(provinc==7){
+ if(provincT==7){
 	 provinc='Pichincha';
  }
- if(provinc==8){
+ if(provincT==8){
 	 provinc='Guayas';
  }
- if(provinc==9){
+ if(provincT==9){
 	 provinc='Bol&iacute;var';
  }
- if(provinc==10){
+ if(provincT==10){
 	 provinc='Pastaza';
  }
- if(provinc==11){
+ if(provincT==11){
 	 provinc='Loja';
  }
- if(provinc==12){
+ if(provincT==12){
 	 provinc='Zamora Chinchipe';
  }
  address = document.getElementById('direccion').value + ' ' + provinc + ' ' + ' Ecuador';

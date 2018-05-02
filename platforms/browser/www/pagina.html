@@ -46,9 +46,16 @@
 </div>
 <script>
 function actualizar(){
+	var mensaje=document.getElementById('mensaje_javascript');
+		mensaje.style.display='block';
+var texto="<p>Aviso.</br>Se actualizara la app con los datos de la plataforma.</p>";
+texto= texto + "<button type='button' onclick='cancelarconfiguauario(\"mensaje_javascript\");'>Cancelar</button>";
+texto= texto + "<button type='button' onclick='actualizarI();'>Actualizar</button>";
+		mensaje.childNodes[0].innerHTML=texto;
+}
+function actualizarI(){
 document.getElementById('ajax-loader').style.display='block';
 checkConnection();
-
 }
 function tablasDiagIni(){
 db.transaction(tablasDiagIn);
@@ -109,10 +116,11 @@ texto= texto + "<button type='button' onclick='cancelarconfiguauario(\"mensaje_j
 		$.get( "https://solucionprofuturo.info/App/cargarDiag.php?ID=" + Provincia, function( data ) {
 		var Diagnostico=data.split(';-;');
 		//alert(Diagnostico.length);
+		var preg=[];
 		for(var j=0; j<Diagnostico.length; j++){
-		var preg=Diagnostico[j].split(':-:');
-		if(preg[0]>0){
-		//alert(preg.length);
+		 preg[j]=Diagnostico[j].split(':-:');
+		if(preg[j][0]>0){
+		//alert(preg[j][0]);
 		var sqlT='INSERT INTO DiagnosticoP (ID , USUARIO , PROVINCIA , ';
 		 for(var i=1; i<=192 ; i++){
 	   if(i!=192){
@@ -122,17 +130,15 @@ texto= texto + "<button type='button' onclick='cancelarconfiguauario(\"mensaje_j
 	   }
 	   }
 		sqlT=sqlT + ') VALUES (';
-		for(var i=0; i<(preg.length-1); i++){
-		if(i!=(preg.length-2)){
-	    sqlT=sqlT + '"' + preg[i] + '" , ';
+		for(var i=0; i<(preg[j].length-1); i++){
+		if(i!=(preg[j].length-2)){
+	    sqlT=sqlT + '"' + preg[j][i] + '" , ';
 	   }else{
-	   sqlT=sqlT + '"' + preg[i] ;
+	   sqlT=sqlT + '"' + preg[j][i] ;
 	   }
 		}
 		sqlT=sqlT + '" )';
-		db.transaction(function(tx) {
-		tx.executeSql(sqlT);
-		});
+		guardarActu(sqlT);
 		//alert(sqlT);
 		//document.getElementById('tablasDiag').innerHTML='</br>'+ sqlT;
 		//tx.executeSql('INSERT INTO DiagnosticoP (ID , USUARIO , PROVINCIA ) VALUES ("1" ,"2" , "3") ');
@@ -155,11 +161,17 @@ texto= texto + "<button type='button' onclick='cancelarconfiguauario(\"mensaje_j
 			
 		
 		//}
+		document.getElementById('mensaje_javascript').style.display="none";
 		
     }
 
     // Transaction error callback
     //
+	function guardarActu(sqlT){
+	db.transaction(function(tx) {
+		tx.executeSql(sqlT);
+		});
+	}
     function errorCB(tx, err) {
         alert("Error processing SQL: "+err);
     }
