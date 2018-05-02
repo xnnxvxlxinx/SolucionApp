@@ -289,7 +289,7 @@ $('#ajax-loader').fadeIn(100);
 	 
 	 for(var i=0; i<results.rows.length; i++){
 	 //alert(results.rows.item(i)['preg3']);
-	 text=text+"<option value='" + results.rows.item(i)['ID'] +"'>" + results.rows.item(i)['preg3'] + "</option>";
+	 text=text+"<option value='" + results.rows.item(i)['preg3'] +"'>" + results.rows.item(i)['preg3'] + "</option>";
 	 }
 	 	text=text+"</select>";
 	text=text+"<button type='button' onclick='cargarDiagNue2(); cancelarconfiguauario(\"mensaje_javascript\");'>Cargar</button>  ";
@@ -308,7 +308,7 @@ function cargarDiagNue2(){
 	
 	$('#ajax-loader').fadeIn(100);
 	db.transaction(function(tx){
-	 tx.executeSql ('SELECT * FROM DiagnosticoP WHERE ID="'+ idFicha +'"', [], function(tx, results){
+	 tx.executeSql ('SELECT * FROM DiagnosticoP WHERE preg3="'+ idFicha +'"', [], function(tx, results){
 		//var preg=data.split(':-:');
 		var preg=[];
 		//alert(results.rows.length);

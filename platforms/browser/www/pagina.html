@@ -194,24 +194,26 @@ texto= texto + "<button type='button' onclick='cancelarconfiguauario(\"mensaje_j
 		document.getElementById('ajax-loader').style.display='none';
 		 })
   		.done(function() {
-		var textoT="";
+		
 		db.transaction(function(tx) {
 		tx.executeSql ('SELECT * FROM DiagnosticoP WHERE preg3="'+AMIE+'"', [], function(tx, results){
+		
 		for(var j=1; j<=16; j++){
-		var links="https://solucionprofuturo.info/App/subirDiag.php?ID="+ results.rows.item(0)['ID'] +"&USUARIO="+ID_Usuario+"&PROVINCIA="+results.rows.item(0)['PROVINCIA']+"";		
+		
+		
+		var links="https://solucionprofuturo.info/App/subirDiag.php?ID="+ results.rows.item(0)['ID'] +"&USUARIO="+ID_Usuario+"&PROVINCIA="+results.rows.item(0)['PROVINCIA']+"&AMIE="+results.rows.item(0)['preg3']+"";		
+		//var links="https://solucionprofuturo.info/App/subirDiag.php?ID="+ results.rows.item(0)['ID'] +"&USUARIO="+ID_Usuario+"&PROVINCIA="+results.rows.item(0)['PROVINCIA']+"&AMIE="+results.rows.item(0)['preg3']+"";		
 		for(var i=1+(12*(j-1)); i<=12*j; i++){
-		var rsu=results.rows.item(0)['preg'+i].replace(/#/g, ":");
+		var rsu=results.rows.item(0)['preg'+i].replace(/#/g, ":::");
 		//rsu=rsu.replace(";#",";:");
 		links=links+"&preg"+i+"="+ rsu;
-		if(i==8){
+		/*if(i==8){
 		alert(links);
+		}*/
 		}
-		}
-		$.get(links, function(data){
-		textoT=textoT+data;
-		document.getElementById('mensajeError').innerHTML=textoT;
-		document.getElementById('ajax-loader').style.display='none';
-		});
+	
+		
+		enviarLDiag(links);
 		}
 		/*var mensaje=document.getElementById('mensaje_javascript');
 		mensaje.style.display='block';
@@ -242,6 +244,15 @@ texto= texto + "<button type='button' onclick='cancelarconfiguauario(\"mensaje_j
 	document.getElementById('ajax-loader').style.display='none';
   });*/
          })	
+	}
+	var textoT="";
+	function enviarLDiag(links){
+	$.get(links, function(data){
+		textoT=textoT+data+links;
+		document.getElementById('mensajeError').innerHTML=textoT;
+		document.getElementById('ajax-loader').style.display='none';
+		
+		});
 	}
   function cancelarconfiguauario(id){
 	document.getElementById(id).style.display='none';
